@@ -52,9 +52,26 @@ export const assets = {
     ],
   },
   books: [
-    { id: 'tamarrod-jinn', title: 'تمرد الجن', pdfPath: bookTamarrod },
-    { id: 'tarateel-almaani', title: 'تراتيل المعاني', pdfPath: bookTarateel },
-    { id: 'dahaleez-alwaei', title: 'دهاليز الوعي اللامحدود', pdfPath: bookDahaleez },
+    {
+      id: 'tamarrod-jinn',
+      title: 'تمرد الجن',
+      pdfPath: bookTamarrod,
+      // Production-safe absolute URL (prevents fragile relative resolution on mobile routes)
+      pdfUrl: bookTamarrod,
+    },
+    {
+      id: 'tarateel-almaani',
+      title: 'تراتيل المعاني',
+      pdfPath: bookTarateel,
+      pdfUrl: bookTarateel,
+    },
+    {
+      id: 'dahaleez-alwaei',
+      title: 'دهاليز الوعي اللامحدود',
+      pdfPath: bookDahaleez,
+      pdfUrl: bookDahaleez,
+    },
   ],
 };
+
 

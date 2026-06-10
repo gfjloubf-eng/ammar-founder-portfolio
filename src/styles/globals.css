@@ -274,10 +274,45 @@ img, iframe{ max-width:100%; height:auto; }
 
 html,body{ overflow-x:hidden; }
 
+/* Header responsive hardening (no redesign, only overflow/clipping fixes) */
+@media (max-width: 900px){
+  .headerInner{ height: 60px; }
+  .brandLogo{ width: 34px; height: 34px; }
+  .navMobile{ display:flex; align-items:center; }
+  .mobileBrandPill{ max-width: 190px; overflow:hidden; text-overflow: ellipsis; white-space: nowrap; }
+}
+
+@media (max-width: 420px){
+  .headerInner{ height: 56px; }
+  .container{ padding: 0 14px; }
+  .brandLogo{ width: 32px; height: 32px; }
+  .mobileBrandPill{ padding: 9px 10px; max-width: 150px; }
+}
+
+@media (min-width: 768px) and (max-width: 899px){
+  .headerInner{ height: 62px; }
+}
+
+@media (min-width: 360px) and (max-width: 389px){
+  .mobileBrandPill{ max-width: 165px; }
+}
+
+@media (min-width: 320px) and (max-width: 359px){
+  .mobileBrandPill{ max-width: 135px; }
+}
+
+@media (max-width: 768px){
+  /* Ensure header never pushes horizontal overflow */
+  .header{ width: 100%; }
+  .brand{ min-width: 0; }
+  .container.headerInner{ gap: 10px; }
+}
+
 /* small tweaks */
 .container{ padding: 0 22px; }
 
 /* RTL adjustments */
 html[dir='rtl'] .btn{ direction: rtl; }
 html[dir='rtl'] .skillChip{ margin-left:6px; margin-right:0; }
+
 

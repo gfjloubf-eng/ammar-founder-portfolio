@@ -3,6 +3,7 @@ import type { assets as AssetsType } from '../../content/assets';
 
 type Book = (typeof import('../../content/assets').assets)['books'][number];
 
+
 export function PdfPreviewModal({
   open,
   onClose,
@@ -102,11 +103,45 @@ export function PdfPreviewModal({
               background: 'rgba(255,255,255,.02)',
             }}
           >
-            <iframe
-              title={book.title}
-              src={book.pdfPath}
-              style={{ width: '100%', height: '70vh', border: 0 }}
-            />
+            {/* Desktop keeps iframe preview; Mobile fallback opens PDF in a new tab to avoid 404 on certain URLs */}
+            <div className="pdfPreviewFrameWrap">
+              <iframe
+                title={book.title}
+                src={book.pdfPath}
+                style={{ width: '100%', height: '70vh', border: 0 }}
+              />
+            </div>
+
+            <div className="pdfMobileFallback">
+              <a
+                href={book.pdfUrl}
+                target="_blank"
+                rel="noreferrer"
+                className="btn ghost"
+                style={{
+                  justifyContent: 'center',
+                  width: '100%',
+                  padding: '12px 14px',
+                  marginTop: 10,
+                  textAlign: 'center',
+                }}
+              >
+                فتح PDF في تبويب جديد
+              </a>
+            </div>
+
+            <style>{`
+              .pdfMobileFallback{ display:none; }
+              @media (max-width: 768px){
+                .pdfPreviewFrameWrap{ display:none; }
+                .pdfMobileFallback{ display:block; }
+              }
+            `}</style>
+
+
+
+
+
           </div>
         </div>
       </div>
