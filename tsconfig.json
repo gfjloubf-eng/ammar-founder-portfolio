@@ -17,7 +17,8 @@
 
     "baseUrl": ".",
     "paths": {},
-    "verbatimModuleSyntax": false
+    "verbatimModuleSyntax": false,
+    "ignoreDeprecations": "6.0"
   },
   "include": ["src"]
 }

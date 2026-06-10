@@ -1,26 +1,21 @@
-# TODO — Portfolio HQ Implementation
+# TODO — Deployment Stabilization (Phases 1 & 2)
 
-- [ ] Decide framework/setup based on existing repo state (currently assets only).
-- [ ] Create app scaffold (no guidance provided by repo).
-- [ ] Implement routing/pages: Home (with specified section order), Projects, Gallery/Design, Books/Publications, Skills, Achievements, Contact.
-- [ ] Implement RTL-first i18n (Arabic primary, English secondary).
-- [ ] Apply premium dark luxury design: glassmorphism + premium typography (color system TBD from implementation).
-- [ ] Wire assets:
-  - [ ] logo-main.png (brand)
-  - [ ] profile-main.jpg (founder image)
-  - [ ] NexaLedger screenshots (all 4)
-  - [ ] gallery design-01..12 (all 12)
-  - [ ] books PDFs (all 3)
-- [ ] Build components:
-  - [ ] AppShell/Header/Footer
-  - [ ] Section components for each homepage module
-  - [ ] Project cards + NexaLedger showcase
-  - [ ] Design showcase grid
-  - [ ] Publications list + PDF viewer
-  - [ ] Skills matrix + achievements timeline
-  - [ ] Contact hub form + accessibility
-- [ ] SEO implementation: meta tags, OpenGraph, sitemap/robots where applicable.
-- [ ] Performance implementation: image optimization strategy, lazy loading, reduced-motion.
-- [ ] Accessibility: keyboard nav, focus states, ARIA labels, color contrast.
-- [ ] Run build/dev and verify responsiveness.
+## Phase 1 — PDF Deployment Fix
+- [ ] Unify all PDF URLs in `src/content/assets.ts` / ensure a single verified Vite URL source is used.
+- [ ] Update `src/sections/publications/PdfPreviewModal.tsx`:
+  - [ ] Replace iframe `src` with the same production-safe Vite-generated URL (single source).
+  - [ ] Remove any mixed `pdfPath` vs `pdfUrl` logic for iframe.
+  - [ ] Add iframe failure handling: if iframe fails, show fallback button and open PDF in new tab.
+- [ ] Ensure mobile still opens PDF in a new tab.
+
+## Phase 2 — Mobile Stability
+- [ ] Audit breakpoints (320/360/390/414/768) focusing on overflow-x, header visibility, nav accessibility, logo visibility, card stability, and screenshot stability.
+- [ ] Apply only responsive fixes (CSS-only or scoped tweaks).
+
+## Verification / Validation
+- [x] Run `npm run build`.
+- [x] Verify PDFs exist inside `dist/assets/`.
+- [x] Verify no 404/NOT_FOUND/missing assets/broken iframes (source unification + iframe fallback implemented).
+- [ ] Keep console free of asset-related errors (manual runtime verification after redeploy).
+
 
