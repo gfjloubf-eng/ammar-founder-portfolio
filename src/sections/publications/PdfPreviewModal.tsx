@@ -1,10 +1,9 @@
-import React, { useEffect, useRef } from 'react';
-import type { assets as AssetsType } from '../../content/assets';
+import React, { useEffect, useMemo, useRef } from 'react';
 
 type Book = (typeof import('../../content/assets').assets)['books'][number];
 
-
 export function PdfPreviewModal({
+
   open,
   onClose,
   book,
@@ -14,6 +13,13 @@ export function PdfPreviewModal({
   book: Book | null;
 }) {
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
+
+  const pdfHref = useMemo(() => {
+    // Always prefer Vite-imported (hashed) URL to avoid fragile relative URL resolution on mobile routes.
+    const url = (book as any)?.pdfUrl ?? book?.pdfPath;
+    return typeof url === 'string' ? url : '';
+  }, [book]);
+
 
   useEffect(() => {
     if (!open) return;
@@ -114,7 +120,8 @@ export function PdfPreviewModal({
 
             <div className="pdfMobileFallback">
               <a
-                href={book.pdfUrl}
+                href={pdfHref}
+
                 target="_blank"
                 rel="noreferrer"
                 className="btn ghost"
